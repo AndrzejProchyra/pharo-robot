@@ -1,10 +1,11 @@
 Class {
-	#name : #RbsRobotTest,
-	#superclass : #TestCase,
-	#category : #'Robots-Tests'
+	#name : 'RbsRobotTest',
+	#superclass : 'TestCase',
+	#category : 'Robots-Tests',
+	#package : 'Robots-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsRobotTest >> testComputeNewPosition [
 
 	| rb b |
@@ -18,25 +19,23 @@ RbsRobotTest >> testComputeNewPosition [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsRobotTest >> testExecute [
-
 
 	| rb b |
 	rb := RbsRobot new.
 	b := RbsBoard new.
 	rb setBoard: b.
 	rb x: 4 y: 1.
-	rb execute: 
-'dir #east
+	rb execute: 'dir #east
 mov 2
 mov 3
 dir #north
 mov 3'.
-	self assert: rb position equals: 9@4
+	self assert: rb position equals: 9 @ 4
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsRobotTest >> testRobotAtLocation [
 
 	| rb b |
@@ -47,7 +46,7 @@ RbsRobotTest >> testRobotAtLocation [
 	self assert: (rb board atX: 4 atY: 1) equals: rb
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsRobotTest >> testRobotDefaultDirection [
 
 	| rb |
@@ -55,7 +54,7 @@ RbsRobotTest >> testRobotDefaultDirection [
 	self assert: rb direction equals: #east
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsRobotTest >> testRobotMoveEast [
 
 	| rb b |
@@ -69,7 +68,7 @@ RbsRobotTest >> testRobotMoveEast [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsRobotTest >> testRobotMoveNorth [
 
 	| rb b |
@@ -84,7 +83,7 @@ RbsRobotTest >> testRobotMoveNorth [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsRobotTest >> testRobotMovePreservesGround [
 
 	| rb b |
@@ -101,7 +100,7 @@ RbsRobotTest >> testRobotMovePreservesGround [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsRobotTest >> testRobotMoveSouth [
 
 	| rb b |
@@ -116,7 +115,7 @@ RbsRobotTest >> testRobotMoveSouth [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsRobotTest >> testRobotMoveWest [
 
 	| rb b |

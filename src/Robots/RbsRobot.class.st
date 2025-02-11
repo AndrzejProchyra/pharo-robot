@@ -35,6 +35,26 @@ RbsRobot >> direction: aDirection [
 	direction := aDirection
 ]
 
+{ #category : 'execution' }
+RbsRobot >> execute: aString [
+
+	| orders |
+	orders := self identifyOrdersOf: aString.
+	orders do: [ :order |
+		order first = 'dir'
+			ifTrue: [ self direction: (Object readFrom: order second) ]
+			ifFalse: [ self move: (Object readFrom: order second) ] ]
+]
+
+{ #category : 'as yet unclassified' }
+RbsRobot >> identifyOrdersOf: aString [
+
+	| orders |
+	orders := aString splitOn: Character cr.
+	orders := orders collect: [ :each | each splitOn: Character space ].
+	^ orders
+]
+
 { #category : 'initialization' }
 RbsRobot >> initialize [
 
