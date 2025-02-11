@@ -3,24 +3,25 @@ I'm a tile inside a 2D space.
 My subclasses should provide a character based representation so that the board that contains me can be displayed
 "
 Class {
-	#name : #RbsTile,
-	#superclass : #Object,
+	#name : 'RbsTile',
+	#superclass : 'Object',
 	#instVars : [
 		'position',
 		'board',
 		'x',
 		'y'
 	],
-	#category : #'Robots-Board'
+	#category : 'Robots-Board',
+	#package : 'Robots-Board'
 }
 
-{ #category : #'default encoding' }
+{ #category : 'default encoding' }
 RbsTile class >> textualMapCharacter [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 RbsTile >> basicPosition: aPosition [
 	"A position is a x,y kind of object."
 	"to probably remove and introduce basicX: and basicY:"
@@ -28,44 +29,44 @@ RbsTile >> basicPosition: aPosition [
 	y := aPosition y
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RbsTile >> board [
 	^ board 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RbsTile >> character [
 
 	^ self class textualMapCharacter
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RbsTile >> initialize [ 
 	super initialize.
 	self basicPosition: 1@1
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RbsTile >> position [
 
 	^ x @ y
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 RbsTile >> position: aPoint [
 
 	self basicPosition: aPoint.
 	self board atX: aPoint x atY: aPoint y put: self
 ]
 
-{ #category : #move }
+{ #category : 'move' }
 RbsTile >> postCreationAction [
 	"nothing by default"
 	
 	^ self
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 RbsTile >> printOn: aStream [ 
 
 	super printOn: aStream.
@@ -78,25 +79,25 @@ RbsTile >> printOn: aStream [
 		print: y
 ]
 
-{ #category : #protected }
+{ #category : 'protected' }
 RbsTile >> setBoard: aBoard [
 	board := aBoard
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RbsTile >> x [
 
 	^ x
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RbsTile >> x: anInteger [
 	"may be we should update the previous position."
 	x := anInteger.
 	self board atX: x atY: y put: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RbsTile >> x: xCoord y: yCoord [
 	"may be we should update the previous position."
 	x := xCoord.
@@ -104,13 +105,13 @@ RbsTile >> x: xCoord y: yCoord [
 	self board atX: x atY: y put: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RbsTile >> y [
 
 	^ y
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RbsTile >> y: anInteger [
 	"may be we should update the previous position."
 

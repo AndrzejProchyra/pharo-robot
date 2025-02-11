@@ -1,10 +1,11 @@
 Class {
-	#name : #RbsBoardTest,
-	#superclass : #TestCase,
-	#category : #'Robots-Board'
+	#name : 'RbsBoardTest',
+	#superclass : 'TestCase',
+	#category : 'Robots-Board',
+	#package : 'Robots-Board'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsBoardTest >> testCreatedBoard [
 
 	| b |
@@ -15,7 +16,7 @@ RbsBoardTest >> testCreatedBoard [
 	self assert: b height equals: 2.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsBoardTest >> testCreatedBoardWithExtent [
 
 	| b |
@@ -24,7 +25,7 @@ RbsBoardTest >> testCreatedBoardWithExtent [
 	self assert: b height equals: 200.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsBoardTest >> testGroundIsSet [
 
 	| b |
@@ -32,7 +33,7 @@ RbsBoardTest >> testGroundIsSet [
 	self assert: (b atX: 1 atY: 1) class equals: RbsGround
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsBoardTest >> testPrintingCreatedBoard [
 
 	| b |
@@ -43,7 +44,7 @@ RbsBoardTest >> testPrintingCreatedBoard [
 _____'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsBoardTest >> testPrintingCreatedBoardWithRobot [
 
 	| rb b |
@@ -57,7 +58,7 @@ RbsBoardTest >> testPrintingCreatedBoardWithRobot [
 ___X_'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsBoardTest >> testRobotPrinting [
 	| rb b |
 	rb := RbsGround new.
@@ -67,7 +68,7 @@ RbsBoardTest >> testRobotPrinting [
 	self assert: rb printString equals: 'a RbsGround _ 5 3'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsBoardTest >> testTileKnowsItsBoard [
 
 	| b |
@@ -75,7 +76,7 @@ RbsBoardTest >> testTileKnowsItsBoard [
 	self assert: (b atX: 2 atY: 2) board equals: b
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsBoardTest >> testTilePositionUpdatesBoard [
 
 	| b t |
@@ -86,7 +87,7 @@ RbsBoardTest >> testTilePositionUpdatesBoard [
 	self assert: (b atX: 2 atY: 2) equals: t
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsBoardTest >> testTilePositionUpdatesBoard2 [
 
 	| b t |

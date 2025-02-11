@@ -3,55 +3,56 @@ I'm a board a kind of 2D space holding tile objects.
 A tile object should accept a position and a character based representation.
 "
 Class {
-	#name : #RbsBoard,
-	#superclass : #Object,
+	#name : 'RbsBoard',
+	#superclass : 'Object',
 	#instVars : [
 		'map'
 	],
-	#category : #'Robots-Board'
+	#category : 'Robots-Board',
+	#package : 'Robots-Board'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RbsBoard class >> extent: aPoint [
 
 	^ self basicNew extent: aPoint; yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RbsBoard class >> new [
 
 	^ self extent: 30@12
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 RbsBoard >> asciiString [ 
 
 	^ String streamContents: [ :st | self printNicelyOn: st ]	
 
 ]
 
-{ #category : #'low level access' }
+{ #category : 'low level access' }
 RbsBoard >> at: anInteger at: anInteger2 put: anElement [
 	map at: anInteger at: anInteger2 put: anElement 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RbsBoard >> atPosition: aCpPositionable [ 
 	^ (map atX: aCpPositionable x atY: aCpPositionable y)
 ]
 
-{ #category : #'low level access' }
+{ #category : 'low level access' }
 RbsBoard >> atX: xCoord atY: yCoord [
 
 	^ map atX: xCoord atY: yCoord
 ]
 
-{ #category : #'low level access' }
+{ #category : 'low level access' }
 RbsBoard >> atX: anInteger atY: anInteger2 put: anElement [
 	map atX: anInteger atY: anInteger2 put: anElement 
 ]
 
-{ #category : #inspector }
+{ #category : 'inspector' }
 RbsBoard >> basicPrintOnInspector [
 	<inspectorPresentationOrder: 35 title: 'Game'>
 
@@ -60,7 +61,7 @@ RbsBoard >> basicPrintOnInspector [
 		yourself
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 RbsBoard >> buildMapWidth: x height: y [
 
 	map := CTArray2D 
@@ -69,36 +70,36 @@ RbsBoard >> buildMapWidth: x height: y [
 			self initializeElement: self groundClass new atX: column Y: row ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RbsBoard >> columnNumber [
 	^ map numberOfColumns
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 RbsBoard >> do: aBlock [
 	"Execute the block on each element of the board"
 	
 	map do: aBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RbsBoard >> extent: aPoint [
 
 	self buildMapWidth: aPoint x height: aPoint y 
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 RbsBoard >> groundClass [
 
 	^ RbsGround
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RbsBoard >> height [
 	^ map height
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 RbsBoard >> initializeElement: anElement atX: xCoord Y: yCoord [
 
 	anElement setBoard: self.
@@ -107,12 +108,12 @@ RbsBoard >> initializeElement: anElement atX: xCoord Y: yCoord [
 	anElement postCreationAction.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RbsBoard >> lineNumber [
 	^ map numberOfRows
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 RbsBoard >> printNicelyOn: aStream [
 	
 	(self height to: 1 by: -1) 
@@ -124,7 +125,7 @@ RbsBoard >> printNicelyOn: aStream [
 		separatedBy: [ aStream cr ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RbsBoard >> width [
 	^ map width
 ]
