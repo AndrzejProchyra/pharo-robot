@@ -144,3 +144,21 @@ RbsRobotTest >> testRobotMoveWest [
 	self assert: (rb board atX: 4 atY: 1) equals: rb.
 	
 ]
+
+{ #category : 'tests' }
+RbsRobotTest >> testStartPositionAsOrder [
+
+	| robot board |
+	robot := RbsRobot new.
+	board := RbsBoard new.
+	robot setBoard: board.
+
+	robot execute: 'base 4 1
+dir #east
+mov 2
+mov 3
+dir #north
+mov 3'.
+
+	self assert: robot position equals: 9 @ 4
+]
