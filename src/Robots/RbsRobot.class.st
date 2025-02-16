@@ -43,7 +43,13 @@ RbsRobot >> execute: aString [
 	orders do: [ :order |
 		order first = 'dir'
 			ifTrue: [ self direction: (Object readFrom: order second) ]
-			ifFalse: [ self move: (Object readFrom: order second) ] ]
+			ifFalse: [
+				order first = 'base'
+					ifTrue: [
+						self
+							x: (Object readFrom: order second)
+							y: (Object readFrom: order third) ]
+					ifFalse: [ self move: (Object readFrom: order second) ] ] ]
 ]
 
 { #category : 'as yet unclassified' }

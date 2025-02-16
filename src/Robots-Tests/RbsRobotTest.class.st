@@ -6,6 +6,21 @@ Class {
 }
 
 { #category : 'tests' }
+RbsRobotTest >> testBaseCommandSetsRobotPosition [
+
+	| board robot |
+	board := RbsBoard new.
+	robot := RbsRobot new.
+	robot setBoard: board.
+	robot x: 5 y: 7.
+
+	robot execute: 'base 4 1'.
+
+	self assert: robot x equals: 4.
+	self assert: robot y equals: 1
+]
+
+{ #category : 'tests' }
 RbsRobotTest >> testComputeNewPosition [
 
 	| rb b |
