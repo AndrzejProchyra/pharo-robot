@@ -1,9 +1,22 @@
 Class {
 	#name : 'RbsRobotTest',
 	#superclass : 'TestCase',
+	#instVars : [
+		'robot',
+		'board'
+	],
 	#category : 'Robots-Tests',
 	#package : 'Robots-Tests'
 }
+
+{ #category : 'running' }
+RbsRobotTest >> setUp [
+
+	super setUp.
+	robot := RbsRobot new.
+	board := RbsBoard new.
+	robot setBoard: board
+]
 
 { #category : 'tests' }
 RbsRobotTest >> testBaseCommandSetsRobotPosition [
@@ -148,17 +161,11 @@ RbsRobotTest >> testRobotMoveWest [
 { #category : 'tests' }
 RbsRobotTest >> testStartPositionAsOrder [
 
-	| robot board |
-	robot := RbsRobot new.
-	board := RbsBoard new.
-	robot setBoard: board.
-
 	robot execute: 'base 4 1
 dir #east
 mov 2
 mov 3
 dir #north
 mov 3'.
-
 	self assert: robot position equals: 9 @ 4
 ]
