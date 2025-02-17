@@ -45,6 +45,15 @@ RbsRobotTest >> testComputeNewPosition [
 ]
 
 { #category : 'tests' }
+RbsRobotTest >> testDropItemOnTheLeft [
+
+	robot x: 2 y: 3.
+	robot execute: 'dropL'.
+
+	self assert: (board atPosition: 1 @ 3) class equals: RbsItem
+]
+
+{ #category : 'tests' }
 RbsRobotTest >> testExecute [
 
 	| rb b |

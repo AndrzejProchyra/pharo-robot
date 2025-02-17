@@ -49,7 +49,10 @@ RbsRobot >> execute: aString [
 						self
 							x: (Object readFrom: order second)
 							y: (Object readFrom: order third) ]
-					ifFalse: [ self move: (Object readFrom: order second) ] ] ]
+					ifFalse: [
+						order first = 'dropL'
+							ifTrue: [ board atX: x - 1 atY: y put: RbsItem new ]
+							ifFalse: [ self move: (Object readFrom: order second) ] ] ] ]
 ]
 
 { #category : 'as yet unclassified' }
