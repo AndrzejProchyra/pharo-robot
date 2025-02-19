@@ -2,11 +2,18 @@ Class {
 	#name : 'RbsRobot',
 	#superclass : 'RbsAbstractRobot',
 	#instVars : [
-		'direction'
+		'direction',
+		'commandMap'
 	],
 	#category : 'Robots',
 	#package : 'Robots'
 }
+
+{ #category : 'as yet unclassified' }
+RbsRobot >> commandClassFor: aString [
+
+	^ commandMap at: aString
+]
 
 { #category : 'as yet unclassified' }
 RbsRobot >> computeNewPosition: anInteger [
@@ -56,6 +63,15 @@ RbsRobot >> execute: aString [
 ]
 
 { #category : 'as yet unclassified' }
+RbsRobot >> executeCommandBased: aString [
+
+	(self identifyOrdersOf: aString) do: [ :each |
+		((self commandClassFor: each first) new
+			 handleArguments: each allButFirst;
+			 yourself) executeOn: self ]
+]
+
+{ #category : 'as yet unclassified' }
 RbsRobot >> identifyOrdersOf: aString [
 
 	| orders |
@@ -68,7 +84,16 @@ RbsRobot >> identifyOrdersOf: aString [
 RbsRobot >> initialize [
 
 	super initialize.
+	self initializeCommandMapping.
 	direction := #east
+]
+
+{ #category : 'initialization' }
+RbsRobot >> initializeCommandMapping [
+
+	commandMap := Dictionary new.
+	RbsCommand allSubclassesDo: [ :each |
+		commandMap at: each commandName put: each ]
 ]
 
 { #category : 'accessing' }
