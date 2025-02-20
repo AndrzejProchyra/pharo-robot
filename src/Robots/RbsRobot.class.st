@@ -3,7 +3,8 @@ Class {
 	#superclass : 'RbsAbstractRobot',
 	#instVars : [
 		'direction',
-		'commandMap'
+		'commandMap',
+		'path'
 	],
 	#category : 'Robots',
 	#package : 'Robots'
@@ -63,12 +64,22 @@ RbsRobot >> execute: aString [
 ]
 
 { #category : 'as yet unclassified' }
+RbsRobot >> executeCommand: anOrder [
+
+	| command |
+	command := (self commandClassFor: anOrder first) new.
+	command handleArguments: anOrder allButFirst.
+	path add: command.
+
+	^ command executeOn: self
+]
+
+{ #category : 'as yet unclassified' }
 RbsRobot >> executeCommandBased: aString [
 
-	(self identifyOrdersOf: aString) do: [ :each |
-		((self commandClassFor: each first) new
-			 handleArguments: each allButFirst;
-			 yourself) executeOn: self ]
+	| orders |
+	orders := self identifyOrdersOf: aString.
+	orders do: [ :each | self executeCommand: each ]
 ]
 
 { #category : 'as yet unclassified' }
@@ -85,6 +96,7 @@ RbsRobot >> initialize [
 
 	super initialize.
 	self initializeCommandMapping.
+	path := OrderedCollection new.
 	direction := #east
 ]
 
@@ -106,7 +118,19 @@ RbsRobot >> move: aDistance [
 ]
 
 { #category : 'accessing' }
+RbsRobot >> path [
+
+	^ path
+]
+
+{ #category : 'accessing' }
 RbsRobot >> previousTile [
 
 	^ previousTile
+]
+
+{ #category : 'as yet unclassified' }
+RbsRobot >> replay [
+
+	path do: [ :each | each executeOn: self ]
 ]
