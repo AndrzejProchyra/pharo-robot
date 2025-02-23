@@ -143,6 +143,12 @@ RbsRobot >> replay [
 	path do: [ :each | each executeOn: self ]
 ]
 
+{ #category : 'initialization' }
+RbsRobot >> resetPath [
+
+	path reset
+]
+
 { #category : 'startup - shutdown' }
 RbsRobot >> stopMonitoring [
 
