@@ -1,30 +1,30 @@
 Class {
-	#name : 'RbsResetCommand',
+	#name : 'RbsReplayCommand',
 	#superclass : 'RbsCommand',
 	#category : 'Robots',
 	#package : 'Robots'
 }
 
 { #category : 'accessing' }
-RbsResetCommand class >> commandName [
+RbsReplayCommand class >> commandName [
 
-	^ 'resM'
+	^ 'replay'
 ]
 
 { #category : 'adding' }
-RbsResetCommand >> addToPathOf: aRobot [
+RbsReplayCommand >> addToPathOf: aRobot [
 
 	^ self
 ]
 
 { #category : 'execution' }
-RbsResetCommand >> executeOn: aRobot [
+RbsReplayCommand >> executeOn: aRobot [
 
-	aRobot resetPath
+	aRobot replay
 ]
 
 { #category : 'as yet unclassified' }
-RbsResetCommand >> handleArguments: aCollection [
+RbsReplayCommand >> handleArguments: aCollection [
 
 	^ self
 ]
