@@ -11,6 +11,12 @@ RbsCommand class >> commandName [
 	self subclassResponsibility
 ]
 
+{ #category : 'adding' }
+RbsCommand >> addToPathOf: aRobot [
+
+	aRobot addToPath: self
+]
+
 { #category : 'execution' }
 RbsCommand >> executeOn: aRobot [
 

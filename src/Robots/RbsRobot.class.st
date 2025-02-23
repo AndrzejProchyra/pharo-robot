@@ -4,11 +4,18 @@ Class {
 	#instVars : [
 		'direction',
 		'commandMap',
-		'path'
+		'path',
+		'monitoring'
 	],
 	#category : 'Robots',
 	#package : 'Robots'
 }
+
+{ #category : 'adding' }
+RbsRobot >> addToPath: aCommand [ 
+	
+	path add: aCommand
+]
 
 { #category : 'as yet unclassified' }
 RbsRobot >> commandClassFor: aString [
@@ -69,7 +76,7 @@ RbsRobot >> executeCommand: anOrder [
 	| command |
 	command := (self commandClassFor: anOrder first) new.
 	command handleArguments: anOrder allButFirst.
-	path add: command.
+	monitoring ifTrue: [command addToPathOf: self].
 
 	^ command executeOn: self
 ]
@@ -97,6 +104,7 @@ RbsRobot >> initialize [
 	super initialize.
 	self initializeCommandMapping.
 	path := OrderedCollection new.
+	monitoring := true.
 	direction := #east
 ]
 
@@ -133,4 +141,10 @@ RbsRobot >> previousTile [
 RbsRobot >> replay [
 
 	path do: [ :each | each executeOn: self ]
+]
+
+{ #category : 'startup - shutdown' }
+RbsRobot >> stopMonitoring [
+
+	monitoring := false
 ]
