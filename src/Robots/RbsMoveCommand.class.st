@@ -15,6 +15,12 @@ RbsMoveCommand class >> commandName [
 ]
 
 { #category : 'accessing' }
+RbsMoveCommand >> distance [
+
+	^ distance
+]
+
+{ #category : 'accessing' }
 RbsMoveCommand >> distance: anInteger [
 
 	distance := anInteger

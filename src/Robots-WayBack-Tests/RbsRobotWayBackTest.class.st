@@ -48,14 +48,13 @@ RbsRobotWayBackTest >> testDirectionAsWayBack [
 { #category : 'tests' }
 RbsRobotWayBackTest >> testMoveAsWayBack [
 
-
 	| opposite |
 	opposite := (RbsMoveCommand new distance: 5) asWayBack.
 	self assert: opposite distance equals: 5.
-	
+
 	opposite := (RbsMoveCommand new distance: 5) asWayBack.
 	self assert: opposite distance equals: 5.
-	
+
 	opposite := (RbsMoveCommand new distance: 0) asWayBack.
 	self assert: opposite distance equals: 0
 ]

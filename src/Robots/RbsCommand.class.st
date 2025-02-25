@@ -8,7 +8,7 @@ Class {
 { #category : 'accessing' }
 RbsCommand class >> commandName [
 
-	self subclassResponsibility
+	^ 'wback'
 ]
 
 { #category : 'adding' }
