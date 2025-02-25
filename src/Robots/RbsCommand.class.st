@@ -17,6 +17,12 @@ RbsCommand >> addToPathOf: aRobot [
 	aRobot addToPath: self
 ]
 
+{ #category : 'converting' }
+RbsCommand >> asWayBack [
+
+	^ self
+]
+
 { #category : 'execution' }
 RbsCommand >> executeOn: aRobot [
 

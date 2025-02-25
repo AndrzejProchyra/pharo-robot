@@ -1,10 +1,11 @@
 Class {
-	#name : #RbsRobotWayBackTest,
-	#superclass : #TestCase,
-	#category : #'Robots-WayBack-Tests'
+	#name : 'RbsRobotWayBackTest',
+	#superclass : 'TestCase',
+	#category : 'Robots-WayBack-Tests',
+	#package : 'Robots-WayBack-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsRobotWayBackTest >> testComputeOppositeDirection [
 
 
@@ -16,32 +17,35 @@ RbsRobotWayBackTest >> testComputeOppositeDirection [
 	self assert: (cmd computeOppositeDirection: #south) equals: #north.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsRobotWayBackTest >> testCut [
 
-	| res |
-	res := OrderedCollection new. 
-	
-	#(2 2 #east 1 1 1 #north 5 #east) 
-		ifCutOn: [ :s | s isSymbol ] 
-		doWithCutAndUncuts: [ :cut :before | res addLast: cut; addAll: before ]
-		finally: [:u | res addLast: u].
-	self assert: res equals: #(#east 2 2 #north 1 1 1 #east 5) asOrderedCollection
+	| result |
+	result := OrderedCollection new.
+
+	#( 2 2 #east 1 1 1 #north 5 #east )
+		ifCutOn: [ :s | s isSymbol ]
+		doWithCutAndUncuts: [ :cut :before |
+			result
+				addLast: cut;
+				addAll: before ]
+		finally: [ :u | result addLast: u ].
+	self
+		assert: result
+		equals: #( #east 2 2 #north 1 1 1 #east 5 ) asOrderedCollection
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsRobotWayBackTest >> testDirectionAsWayBack [
-
 
 	| opposite |
 	opposite := (RbsDirectionCommand new direction: #east) asWayBack.
-	self assert: opposite direction equals: #west.	
+	self assert: opposite direction equals: #west.
 	opposite := (RbsDirectionCommand new direction: #west) asWayBack.
-	self assert: opposite direction equals: #east.
-	
+	self assert: opposite direction equals: #east
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsRobotWayBackTest >> testMoveAsWayBack [
 
 
@@ -56,7 +60,7 @@ RbsRobotWayBackTest >> testMoveAsWayBack [
 	self assert: opposite distance equals: 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsRobotWayBackTest >> testWayBack [
 
 	| rb b |
@@ -75,7 +79,7 @@ wback'.
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RbsRobotWayBackTest >> testWayBack2 [
 
 	| rb b |

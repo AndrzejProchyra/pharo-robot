@@ -15,10 +15,28 @@ RbsDirectionCommand class >> commandName [
 	^ 'dir'
 ]
 
+{ #category : 'converting' }
+RbsDirectionCommand >> asWayBack [
+
+	^ self class new direction:
+		  (self computeOppositeDirection: direction)
+]
+
 { #category : 'as yet unclassified' }
 RbsDirectionCommand >> computeOppositeDirection: aDirection [
 
 	^ directionToOpposite at: aDirection
+]
+
+{ #category : 'accessing' }
+RbsDirectionCommand >> direction [
+
+	^ direction
+]
+
+{ #category : 'accessing' }
+RbsDirectionCommand >> direction: aString [ 
+	direction := aString
 ]
 
 { #category : 'execution' }
