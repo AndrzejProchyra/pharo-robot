@@ -38,6 +38,18 @@ RbsMoveCommand >> handleArguments: aCollection [
 	distance := Object readFrom: aCollection first
 ]
 
+{ #category : 'operations' }
+RbsMoveCommand >> mergeWith: aRbsMoveCommand [
+
+	^ aRbsMoveCommand mergeWithMoveCommand: self
+]
+
+{ #category : 'as yet unclassified' }
+RbsMoveCommand >> mergeWithMoveCommand: aRbsMoveCommand [
+
+	^ { (self class new distance: distance + aRbsMoveCommand distance) }
+]
+
 { #category : 'printing' }
 RbsMoveCommand >> printOn: aStream [
 
