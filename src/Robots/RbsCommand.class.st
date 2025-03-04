@@ -34,3 +34,25 @@ RbsCommand >> handleArguments: aCollection [
 
 	self subclassResponsibility
 ]
+
+{ #category : 'operations' }
+RbsCommand >> mergeWith: aCommand [
+
+	^ aCommand mergeWithDirectionCommand: self
+]
+
+{ #category : 'as yet unclassified' }
+RbsCommand >> mergeWithDirectionCommand: aRbsDirectionCommand [
+
+	^ {
+		  aRbsDirectionCommand.
+		  self }
+]
+
+{ #category : 'as yet unclassified' }
+RbsCommand >> mergeWithMoveCommand: aRbsMoveCommand [
+
+	^ {
+		  aRbsMoveCommand.
+		  self }
+]
