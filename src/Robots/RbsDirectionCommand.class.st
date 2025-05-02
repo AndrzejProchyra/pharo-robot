@@ -61,3 +61,9 @@ RbsDirectionCommand >> initialize [
 		                       (#west -> #east).
 		                       (#east -> #west) } asDictionary
 ]
+
+{ #category : 'converting' }
+RbsDirectionCommand >> mergeWithDirectionCommand: aRbsDirectionCommand [
+
+	^ { self }
+]

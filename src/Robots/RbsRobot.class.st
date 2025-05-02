@@ -125,6 +125,11 @@ RbsRobot >> move: aDistance [
 	self x: newPosition x y: newPosition y
 ]
 
+{ #category : 'as yet unclassified' }
+RbsRobot >> optimizePath: aString [ 
+	self shouldBeImplemented.
+]
+
 { #category : 'accessing' }
 RbsRobot >> path [
 
