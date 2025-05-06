@@ -74,10 +74,8 @@ RbsRobot >> execute: aString [
 RbsRobot >> executeCommand: anOrder [
 
 	| command |
-	command := (self commandClassFor: anOrder first) new.
-	command handleArguments: anOrder allButFirst.
-	monitoring ifTrue: [command addToPathOf: self].
-
+	command := self getCommandFrom: anOrder.
+	monitoring ifTrue: [ command addToPathOf: self ].
 	^ command executeOn: self
 ]
 
@@ -87,6 +85,15 @@ RbsRobot >> executeCommandBased: aString [
 	| orders |
 	orders := self identifyOrdersOf: aString.
 	orders do: [ :each | self executeCommand: each ]
+]
+
+{ #category : 'as yet unclassified' }
+RbsRobot >> getCommandFrom: anOrder [
+
+	| command |
+	command := (self commandClassFor: anOrder first) new.
+	command handleArguments: anOrder allButFirst.
+	^ command
 ]
 
 { #category : 'as yet unclassified' }
@@ -116,6 +123,21 @@ RbsRobot >> initializeCommandMapping [
 		commandMap at: each commandName put: each ]
 ]
 
+{ #category : 'as yet unclassified' }
+RbsRobot >> mergeCommands: commands [
+
+	^ commands inject: OrderedCollection new into: [ :acc :each |
+		  | last merged |
+		  acc isEmpty
+			  ifTrue: [ acc add: each ]
+			  ifFalse: [
+				  last := acc last.
+				  merged := last mergeWith: each.
+				  acc removeLast.
+				  acc addAll: merged ].
+		  acc ]
+]
+
 { #category : 'accessing' }
 RbsRobot >> move: aDistance [
 
@@ -126,8 +148,12 @@ RbsRobot >> move: aDistance [
 ]
 
 { #category : 'as yet unclassified' }
-RbsRobot >> optimizePath: aString [ 
-	self shouldBeImplemented.
+RbsRobot >> optimizePath: aString [
+
+	| orders commands |
+	orders := self identifyOrdersOf: aString.
+	commands := orders collect: [ :order | self getCommandFrom: order ].
+	path := self mergeCommands: commands
 ]
 
 { #category : 'accessing' }

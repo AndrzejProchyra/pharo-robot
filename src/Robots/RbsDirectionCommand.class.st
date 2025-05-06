@@ -67,3 +67,11 @@ RbsDirectionCommand >> mergeWithDirectionCommand: aRbsDirectionCommand [
 
 	^ { self }
 ]
+
+{ #category : 'printing' }
+RbsDirectionCommand >> printOn: aStream [
+
+	aStream
+		nextPutAll: 'dir ';
+		print: direction
+]
